@@ -23,6 +23,8 @@
 		32E6A91D2BEBAE8F0033DC04 /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A91C2BEBAE8F0033DC04 /* MoviesView.swift */; };
 		32E6A91F2BEBAEBB0033DC04 /* BookingProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A91E2BEBAEBB0033DC04 /* BookingProcess.swift */; };
 		32E6A9212BEC77EE0033DC04 /* BookingTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9202BEC77EE0033DC04 /* BookingTipsView.swift */; };
+		32E6A9232BECA8EA0033DC04 /* SelectTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9222BECA8EA0033DC04 /* SelectTimeView.swift */; };
+		32E6A9262BECB3E10033DC04 /* SelectSeatAmountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9252BECB3E10033DC04 /* SelectSeatAmountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		32E6A91C2BEBAE8F0033DC04 /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		32E6A91E2BEBAEBB0033DC04 /* BookingProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingProcess.swift; sourceTree = "<group>"; };
 		32E6A9202BEC77EE0033DC04 /* BookingTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTipsView.swift; sourceTree = "<group>"; };
+		32E6A9222BECA8EA0033DC04 /* SelectTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTimeView.swift; sourceTree = "<group>"; };
+		32E6A9252BECB3E10033DC04 /* SelectSeatAmountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSeatAmountView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 		32E6A90C2BEB62BD0033DC04 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				32E6A9242BECB39E0033DC04 /* Booking */,
 				32E6A9102BEB69640033DC04 /* BookingDetailsView.swift */,
 				32E6A9122BEB6B550033DC04 /* HistoryView.swift */,
 				32E6A9162BEBAE2D0033DC04 /* HomeView.swift */,
@@ -168,6 +173,15 @@
 				32E6A9142BEB95840033DC04 /* MovieData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		32E6A9242BECB39E0033DC04 /* Booking */ = {
+			isa = PBXGroup;
+			children = (
+				32E6A9222BECA8EA0033DC04 /* SelectTimeView.swift */,
+				32E6A9252BECB3E10033DC04 /* SelectSeatAmountView.swift */,
+			);
+			path = Booking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,7 +314,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32E6A9262BECB3E10033DC04 /* SelectSeatAmountView.swift in Sources */,
 				32E6A9212BEC77EE0033DC04 /* BookingTipsView.swift in Sources */,
+				32E6A9232BECA8EA0033DC04 /* SelectTimeView.swift in Sources */,
 				32E6A9152BEB95840033DC04 /* MovieData.swift in Sources */,
 				32E6A9172BEBAE2D0033DC04 /* HomeView.swift in Sources */,
 				32E6A8E52BEB36F10033DC04 /* ContentView.swift in Sources */,
