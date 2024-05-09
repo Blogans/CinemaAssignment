@@ -20,7 +20,6 @@
 		32E6A9152BEB95840033DC04 /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9142BEB95840033DC04 /* MovieData.swift */; };
 		32E6A9172BEBAE2D0033DC04 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9162BEBAE2D0033DC04 /* HomeView.swift */; };
 		32E6A9192BEBAE560033DC04 /* UpcomingTicketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9182BEBAE560033DC04 /* UpcomingTicketView.swift */; };
-		32E6A91B2BEBAE760033DC04 /* FeaturedMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A91A2BEBAE760033DC04 /* FeaturedMovieView.swift */; };
 		32E6A91D2BEBAE8F0033DC04 /* MoviesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A91C2BEBAE8F0033DC04 /* MoviesView.swift */; };
 		32E6A91F2BEBAEBB0033DC04 /* BookingProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A91E2BEBAEBB0033DC04 /* BookingProcess.swift */; };
 		32E6A9212BEC77EE0033DC04 /* BookingTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A9202BEC77EE0033DC04 /* BookingTipsView.swift */; };
@@ -60,7 +59,6 @@
 		32E6A9142BEB95840033DC04 /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		32E6A9162BEBAE2D0033DC04 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		32E6A9182BEBAE560033DC04 /* UpcomingTicketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingTicketView.swift; sourceTree = "<group>"; };
-		32E6A91A2BEBAE760033DC04 /* FeaturedMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMovieView.swift; sourceTree = "<group>"; };
 		32E6A91C2BEBAE8F0033DC04 /* MoviesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesView.swift; sourceTree = "<group>"; };
 		32E6A91E2BEBAEBB0033DC04 /* BookingProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingProcess.swift; sourceTree = "<group>"; };
 		32E6A9202BEC77EE0033DC04 /* BookingTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingTipsView.swift; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				32E6A9122BEB6B550033DC04 /* HistoryView.swift */,
 				32E6A9162BEBAE2D0033DC04 /* HomeView.swift */,
 				32E6A9182BEBAE560033DC04 /* UpcomingTicketView.swift */,
-				32E6A91A2BEBAE760033DC04 /* FeaturedMovieView.swift */,
 				32E6A91C2BEBAE8F0033DC04 /* MoviesView.swift */,
 				32E6A91E2BEBAEBB0033DC04 /* BookingProcess.swift */,
 				32E6A9202BEC77EE0033DC04 /* BookingTipsView.swift */,
@@ -313,7 +310,6 @@
 				32E6A9132BEB6B550033DC04 /* HistoryView.swift in Sources */,
 				32E6A8E32BEB36F10033DC04 /* AssignmentApp.swift in Sources */,
 				32E6A90F2BEB630D0033DC04 /* BookingHistory.swift in Sources */,
-				32E6A91B2BEBAE760033DC04 /* FeaturedMovieView.swift in Sources */,
 				32E6A91F2BEBAEBB0033DC04 /* BookingProcess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

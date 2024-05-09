@@ -29,12 +29,6 @@ struct Booking: Identifiable, Codable, Hashable {
     }
 }
 
-struct Movie: Identifiable, Codable, Hashable {
-    let id = UUID()
-    let name: String
-    let poster: String
-}
-
 class BookingHistory: ObservableObject {
     @Published var bookings: [Booking] = []
     private let saveKey = "BookingHistory"

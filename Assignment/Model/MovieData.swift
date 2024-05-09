@@ -7,7 +7,18 @@
 
 import Foundation
 
-import Foundation
+struct Movie: Identifiable, Codable, Hashable {
+    let id = UUID()
+    let name: String
+    let poster: String
+    let genres: [String]
+    
+    init(name: String, poster: String, genres: [String]) {
+        self.name = name
+        self.poster = poster
+        self.genres = genres
+    }
+}
 
 class MovieData: ObservableObject {
     @Published var movies: [Movie] = []
@@ -64,11 +75,11 @@ class MovieData: ObservableObject {
     
     private func createSampleMovies() {
         let sampleMovies = [
-            Movie(name: "Shrek 2", poster: "shrek2"),
-            Movie(name: "Avengers Endgame", poster: "endgame"),
-            Movie(name: "Barbie", poster: "barbie"),
-            Movie(name: "Spider-Man Across the Spider-Verse", poster: "spiderman"),
-            Movie(name: "Deadpool", poster: "deadpool")
+            Movie(name: "Shrek 2", poster: "shrek2", genres: ["Comedy", "Animation", "Family"]),
+            Movie(name: "Avengers Endgame", poster: "endgame", genres: ["Action", "Adventure", "Sci-Fi"]),
+            Movie(name: "Barbie", poster: "barbie", genres: ["Comedy", "Family"]),
+            Movie(name: "Spider-Man Across the Spider-Verse", poster: "spiderman", genres: ["Action", "Animation", "Adventure", "Sci-Fi"]),
+            Movie(name: "Deadpool", poster: "deadpool", genres: ["Action", "Comedy", "Adventure"])
         ]
         
         movies.append(contentsOf: sampleMovies)

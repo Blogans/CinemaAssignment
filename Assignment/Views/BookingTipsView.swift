@@ -10,11 +10,11 @@ import SwiftUI
 
 struct BookingTipsView: View {
     @State private var tips: [TipItem] = [
-        TipItem(title: "Book Early", description: "Book your tickets well in advance to get the best seats and avoid last-minute rush."),
-        TipItem(title: "Check Showtimes", description: "Always check the showtimes carefully before booking to ensure you're selecting the correct date and time."),
+        TipItem(title: "Book Early", description: "Book your tickets well in advance to get the best seats and avoid last minute rush."),
+        TipItem(title: "Check Movie Times", description: "Always check the movie times carefully before booking to ensure you're selecting the correct date and time."),
         TipItem(title: "Arrive Early", description: "Arrive at the theater at least 15-20 minutes before the show to find your seats and get settled."),
-        TipItem(title: "Snacks and Drinks", description: "You can bring your own snacks and drinks to the theater, or purchase them at the concession stand."),
-        TipItem(title: "Cancellations", description: "You can cancel your booking up to 2 hours before the showtime and receive a full refund.")
+        TipItem(title: "Snacks and Drinks", description: "You can bring your own snacks and drinks to the theater, or purchase them at the food stand."),
+        TipItem(title: "Cancellations", description: "You can cancel your booking up to 2 hours before the movie time and receive a full refund.")
     ]
     
     var body: some View {
