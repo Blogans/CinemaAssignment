@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Seat: Codable, Hashable {
+    let id: UUID
     let row: String
     let number: Int
 }
@@ -83,11 +84,11 @@ class BookingHistory: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let sampleBookings = [
-            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-08")!, seats: [Seat(row: "A", number: 1), Seat(row: "A", number: 2)], active: true),
-            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-09")!, seats: [Seat(row: "B", number: 3), Seat(row: "B", number: 4)], active: true),
-            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-10")!, seats: [Seat(row: "C", number: 5), Seat(row: "C", number: 6)], active: true),
-            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-11")!, seats: [Seat(row: "D", number: 7), Seat(row: "D", number: 8)], active: true),
-            Booking(movie: movies[4], date: dateFormatter.date(from: "2024-05-12")!, seats: [Seat(row: "E", number: 9), Seat(row: "E", number: 10)], active: true)
+            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-08")!, seats: [Seat(id:UUID(),row: "A", number: 1), Seat(id:UUID(),row: "A", number: 2)], active: true),
+            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-09")!, seats: [Seat(id:UUID(),row: "B", number: 3), Seat(id:UUID(),row: "B", number: 4)], active: true),
+            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-10")!, seats: [Seat(id:UUID(),row: "C", number: 5), Seat(id:UUID(),row: "C", number: 6)], active: true),
+            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-11")!, seats: [Seat(id:UUID(),row: "D", number: 7), Seat(id:UUID(),row: "D", number: 8)], active: true),
+            Booking(movie: movies[4], date: dateFormatter.date(from: "2024-05-12")!, seats: [Seat(id:UUID(),row: "E", number: 9), Seat(id:UUID(),row: "E", number: 10)], active: true)
         ]
         
         bookings.append(contentsOf: sampleBookings)

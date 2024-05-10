@@ -39,7 +39,7 @@ struct BookingStep2View: View {
             
             Button(action: {
                 if totalSeats > 0 {
-                    navigationModel.path.append(BookingStep.step3)
+                    navigationModel.path.append(BookingStep.step3(totalSeats))
                 }
             }) {
                 Text("Next Step")

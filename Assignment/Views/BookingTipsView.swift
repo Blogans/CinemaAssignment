@@ -88,8 +88,3 @@ struct TipItem: Identifiable {
     let description: String
 }
 
-struct BookingTipsView_Previews: PreviewProvider {
-    static var previews: some View {
-        BookingTipsView()
-    }
-}
