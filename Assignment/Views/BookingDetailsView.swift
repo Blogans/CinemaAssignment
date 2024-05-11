@@ -47,7 +47,7 @@ struct BookingDetailsView: View {
                         
                         Image(systemName: "clock")
                             .foregroundColor(.gray)
-                        Text(booking.date, style: .time)
+                        Text(booking.time.time)
                             .font(.headline)
                     }
                     

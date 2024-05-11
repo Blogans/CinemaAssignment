@@ -17,13 +17,15 @@ struct Booking: Identifiable, Codable, Hashable {
     let id: UUID
     let movie: Movie
     let date: Date
+    let time: TimeSlot
     let seats: [Seat]
     var active: Bool
     
-    init(movie: Movie, date: Date, seats: [Seat], active: Bool) {
+    init(movie: Movie, date: Date, time: TimeSlot, seats: [Seat], active: Bool) {
         self.id = UUID()
         self.movie = movie
         self.date = date
+        self.time = time
         self.seats = seats
         self.active = active
     }
@@ -32,7 +34,7 @@ struct Booking: Identifiable, Codable, Hashable {
 class BookingHistory: ObservableObject {
     @Published var bookings: [Booking] = []
     private let saveKey = "BookingHistory"
-    private let movieData: MovieData
+    var movieData: MovieData
     
     init(movieData: MovieData) {
         self.movieData = movieData
@@ -83,11 +85,11 @@ class BookingHistory: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let sampleBookings = [
-            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-08")!, seats: [Seat(row: "A", number: 1), Seat(row: "A", number: 2)], active: true),
-            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-09")!, seats: [Seat(row: "B", number: 3), Seat(row: "B", number: 4)], active: true),
-            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-10")!, seats: [Seat(row: "C", number: 5), Seat(row: "C", number: 6)], active: true),
-            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-11")!, seats: [Seat(row: "D", number: 7), Seat(row: "D", number: 8)], active: true),
-            Booking(movie: movies[4], date: dateFormatter.date(from: "2024-05-12")!, seats: [Seat(row: "E", number: 9), Seat(row: "E", number: 10)], active: true)
+            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-08")!, time: availableTimeslots[1], seats: [Seat(row: "A", number: 1), Seat(row: "A", number: 2)], active: true),
+            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-09")!, time: availableTimeslots[1], seats: [Seat(row: "B", number: 3), Seat(row: "B", number: 4)], active: true),
+            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-10")!, time: availableTimeslots[1], seats: [Seat(row: "C", number: 5), Seat(row: "C", number: 6)], active: true),
+            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-11")!, time: availableTimeslots[1], seats: [Seat(row: "D", number: 7), Seat(row: "D", number: 8)], active: true),
+            Booking(movie: movieData.movies.first {$0.name == "Deadpool" }!, date: dateFormatter.date(from: "2024-05-12")!, time: availableTimeslots[1], seats: [Seat(row: "E", number: 4), Seat(row: "E", number: 5)], active: true)
         ]
         
         bookings.append(contentsOf: sampleBookings)

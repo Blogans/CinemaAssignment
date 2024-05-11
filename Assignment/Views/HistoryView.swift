@@ -61,9 +61,6 @@ struct HistoryView: View {
             .listStyle(PlainListStyle())
         }
         .navigationTitle("Booking History")
-        .navigationDestination(for: Booking.self) { booking in
-            BookingDetailsView(booking: booking)
-        }
     }
 }
 

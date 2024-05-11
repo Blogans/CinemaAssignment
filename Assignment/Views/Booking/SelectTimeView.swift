@@ -8,14 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct TimeSlot: Identifiable, Equatable, Hashable {
+struct TimeSlot: Identifiable, Equatable, Hashable, Encodable, Decodable {
     let id = UUID()
     let time: String
-    
-    static func == (lhs: TimeSlot, rhs: TimeSlot) -> Bool {
-        return lhs.time == rhs.time
-    }
 }
+
+let availableTimeslots: [TimeSlot] = [
+    TimeSlot(time: "10:00 AM"),
+    TimeSlot(time: "12:30 PM"),
+    TimeSlot(time: "3:00 PM"),
+    TimeSlot(time: "6:30 PM"),
+    TimeSlot(time: "9:00 PM")
+]
+
 
 struct BookingStep1View: View {
     let movie: Movie
@@ -25,14 +30,6 @@ struct BookingStep1View: View {
     @State private var selectedTime: TimeSlot? = nil
     @State private var countdownTime: TimeInterval = 10000 // 10 minutes in seconds
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
-    let availableTimeslots: [TimeSlot] = [
-        TimeSlot(time: "10:00 AM"),
-        TimeSlot(time: "12:30 PM"),
-        TimeSlot(time: "3:00 PM"),
-        TimeSlot(time: "6:30 PM"),
-        TimeSlot(time: "9:00 PM")
-    ]
     
     var body: some View {
         VStack {
@@ -44,7 +41,7 @@ struct BookingStep1View: View {
                 .padding(.horizontal)
             }
             
-            BookingDetailsSubView(movie: movie, date: selectedDate, time: selectedTime?.time)
+            BookingDetailsSubView(movie: movie, date: selectedDate, time: selectedTime?.time, selectedSeats: [])
                 .padding(.horizontal)
             
             Button(action: {
@@ -64,13 +61,6 @@ struct BookingStep1View: View {
             .padding()
         }
         .navigationBarTitle("Book Tickets", displayMode: .inline)
-        .onReceive(timer) { _ in
-            if countdownTime > 0 {
-                countdownTime -= 1
-            } else {
-                    // Handle countdown expiration, e.g., navigate to another view
-            }
-        }
     }
 }
 
@@ -93,8 +83,6 @@ struct DateSelectionView: View {
         }
     }
 }
-
-    // Other view structs (DateSelectionView, TimeSelectionView, etc.)
 
 struct TimeSelectionView: View {
     @Binding var selectedTime: TimeSlot?
@@ -138,28 +126,33 @@ struct BookingDetailsSubView: View {
     let movie: Movie
     let date: Date?
     let time: String?
+    let selectedSeats: Set<Seat>
     
     var body: some View {
-        HStack(alignment: .top, spacing: 20) {
-            Image(movie.poster)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 80, height: 110)
-                .cornerRadius(8)
-            
-            VStack(alignment: .leading, spacing: 8) {
-                Text("Booking Details")
-                    .font(.headline)
-                    .padding(.bottom, 4)
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .top, spacing: 20) {
+                Image(movie.poster)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 110)
+                    .cornerRadius(8)
                 
-                if let date = date, let time = time {
-                    Text("Date: \(date, style: .date)")
-                    Text("Time: \(time)")
-                } else {
-                    Text("No date and time selected")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Booking Details")
+                        .font(.headline)
+                        .padding(.bottom, 4)
+                    
+                    if let date = date, let time = time {
+                        Text("Date: \(date, style: .date)")
+                        Text("Time: \(time)")
+                    } else {
+                        Text("No date and time selected")
+                    }
+                    
+                    Text("Movie: \(movie.name)")
+                    
+                    SelectedSeatsView(selectedSeats: selectedSeats)
                 }
-                
-                Text("Movie: \(movie.name)")
             }
         }
         .padding()
@@ -167,6 +160,25 @@ struct BookingDetailsSubView: View {
         .cornerRadius(10)
     }
 }
+
+struct SelectedSeatsView: View {
+    let selectedSeats: Set<Seat>
+    
+    var body: some View {
+        if !selectedSeats.isEmpty {
+            HStack {
+                ForEach(selectedSeats.sorted(by: { $0.row < $1.row || ($0.row == $1.row && $0.number < $1.number) }), id: \.self) { seat in
+                    Text("\(seat.row)\(seat.number)")
+                        .font(.subheadline)
+                        .padding(4)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(4)
+                }
+            }
+        }
+    }
+}
+
 
 struct BookingStep1View_Previews: PreviewProvider {
     static var previews: some View {
