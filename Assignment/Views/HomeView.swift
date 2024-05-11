@@ -39,7 +39,8 @@ struct HomeView: View {
                             ForEach(upcomingBookings) { booking in
                                 NavigationLink(value: booking) {
                                     UpcomingTicketView(booking: booking)
-                                }                            }
+                                }.environmentObject(bookingHistory)
+                            }
                         }
                         .padding()
                     }

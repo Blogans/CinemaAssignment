@@ -1,95 +1,195 @@
 //
-//  SelectSeatAmountView.swift
+//  SelectSeatView.swift
 //  Assignment
 //
-//  Created by Nicolas Chang Sing on 11/5/2024.
+//  Created by Cameron on 11/5/2024.
 //
 
 import Foundation
 import SwiftUI
 
 struct BookingStep3View: View {
-   let movie: Movie
-    let totalSeats: Int
+    let movie: Movie
+    let selectedDate: Date
+    let selectedTime: TimeSlot
+    let adultSeats: Int
+    let childSeats: Int
+    let concessionSeats: Int
+    let bedSeats: Int
+    
+    @EnvironmentObject var bookingHistory: BookingHistory
     @EnvironmentObject var navigationModel: NavigationModel
-    @State private var selectedSeatsAmount: Int = 0
-    var selectedSeats: [Seat] = []
-
-    var body: some View {
-
-        VStack{
-            createBedRow()
+    
+    @State private var selectedSeats: Set<Seat> = []
+    
+    var totalSeatsToSelect: Int {
+        adultSeats + childSeats + concessionSeats + bedSeats
+    }
+    
+    //Gets all seats based on existing seat selections within matching bookings
+    var reservedSeats: Set<Seat> {
+        let existingBookings = bookingHistory.bookings.filter { booking in
+            booking.movie == movie &&
+            Calendar.current.isDate(booking.date, inSameDayAs: selectedDate) &&
+            booking.time == selectedTime
         }
-
-        VStack{
+        
+        return Set(existingBookings.flatMap { $0.seats })
+    }
+    
+    var body: some View {
+        VStack() {
+            //Label to show direction of seat facing
+            Text("Front of Cinema")
+                .font(.headline)
+                .fontWeight(.semibold)
+                .padding(.top)
+            
+            //Displays the seat selection UI view
+            SeatSelectionView(selectedSeats: $selectedSeats, reservedSeats: reservedSeats, totalSeatsToSelect: totalSeatsToSelect)
+                .padding(.horizontal)
+            
+            //VStack for displaying the information about the seat selection process
+            VStack {
+                Text("Selected: \(selectedSeats.count)/\(totalSeatsToSelect)")
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                                
+                LegendView()
+                
+                Spacer()
+            }
+            .padding(.vertical)
+            
+            Spacer()
+            
+            //Existing booking sub view from previous views showing the current booking details as the user selects things
+            BookingDetailsSubView(movie: movie, date: selectedDate, time: selectedTime.time, selectedSeats: selectedSeats)
+                .padding(.horizontal)
+            
+            //Button for transferring to confirmation view
             Button(action: {
-                if selectedSeatsAmount == totalSeats {
+                if selectedSeats.count == totalSeatsToSelect {
+                    //If all seats have been selected, a booking is created and saved.
+                    let newBooking = Booking(movie: movie,
+                                             date: selectedDate,
+                                             time: selectedTime,
+                                             seats: Array(selectedSeats),
+                                             active: true)
+                    bookingHistory.addBooking(newBooking)
+                    
                     navigationModel.path.append(BookingStep.confirmation)
                 }
-            }) {Text("Confirm Booking")
+            }) {
+                Text("Confirm")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(selectedSeatsAmount != totalSeats ? Color.gray : Color.blue)
+                    .background(selectedSeats.count == totalSeatsToSelect ? Color.blue : Color.gray)
                     .cornerRadius(10)
             }
-            .disabled(selectedSeatsAmount != totalSeats)
+            //Disabled until the user selects all the required seats
+            .disabled(selectedSeats.count != totalSeatsToSelect)
             .padding()
         }
-            .navigationBarTitle("Books Tickets", displayMode: .inline)
+        .navigationBarTitle("Book Tickets", displayMode: .inline)
     }
+}
 
-    func createBedRow() -> some View {
-
-            let rows: Int = 1
-            let numbersPerRow: Int = 5
-
-            return
-
-                VStack {
-                    ForEach(0..<rows, id: \.self) { row in
-                        HStack{
-                            if var selectedSeats = selectedSeats as? [Seat]{
-                                ForEach(0..<numbersPerRow, id: \.self){ number in
-                                    SeatView(seat: Seat(id: UUID(), row: "A", number: number + 1) , onSelect: { seat in
-                                        selectedSeats.append(seat)
-                                        selectedSeatsAmount = selectedSeatsAmount + 1
-                                    }, onDeselect: { seat in
-                                        selectedSeats.removeAll(where: {$0.id == seat.id})
-                                        selectedSeatsAmount = selectedSeatsAmount - 1
-                                    })
-                                }
+struct SeatSelectionView: View {
+    @Binding var selectedSeats: Set<Seat>
+    let reservedSeats: Set<Seat>
+    let totalSeatsToSelect: Int
+    
+    let rows = ["A", "B", "C", "D", "E", "F"]
+    let columns = Array(1...9)
+    
+    var body: some View {
+        //VStack for handling the contents of the complete view
+        VStack(alignment: .center, spacing: 8) {
+            //VStack for handling the seat selection UI
+            VStack(spacing: 8) {
+                ForEach(rows, id: \.self) { row in
+                    HStack(spacing: 8) {
+                        Text(row)
+                            .font(.subheadline)
+                            .foregroundColor(.blue)
+                            .frame(width: 20)
+                        
+                        ForEach(columns, id: \.self) { column in
+                            SeatToggleView(seat: Seat(row: row, number: column),
+                                           isSelected: selectedSeats.contains(Seat(row: row, number: column)),
+                                           isReserved: reservedSeats.contains(Seat(row: row, number: column)))
+                            .frame(width: 30, height: 30)
+                            .onTapGesture {
+                                toggleSeat(Seat(row: row, number: column))
                             }
                         }
                     }
-            }
-        }
-}
-
-
-struct SeatView: View {
-    var seatColor : Color = .blue
-    @State private var isSelected = false
-    var seat: Seat
-    var isSelectable = true
-    var onSelect: ((Seat)->()) = { in }
-    var onDeselect: ((Seat)->()) = { in }
-
-    var body: some View{
-        Rectangle()
-            .frame(width: 30, height: 30)
-            .foregroundColor(isSelectable ? isSelected ? seatColor : Color.gray.opacity(0.5) : seatColor)
-            .cornerRadius(10)
-            .onTapGesture {
-                if self.isSelectable{
-                    self.isSelected.toggle()
-                    if self.isSelected{
-                        self.onSelect(self.seat)
-                    } else {
-                        self.onDeselect(self.seat)
-                    }
                 }
             }
+            //Add labels to the bottom of the UI for columns
+            HStack(spacing: 8) {
+                Spacer()
+                Spacer()
+                Spacer()
+                ForEach(columns, id: \.self) { column in
+                    Text("\(column)")
+                        .font(.subheadline)
+                        .foregroundColor(.blue)
+                        .frame(width: 30)
+                }
+                Spacer()
+            }
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(10)
+    }
+    
+    //Function for handling seat presses
+    private func toggleSeat(_ seat: Seat) {
+        if selectedSeats.contains(seat) {
+            selectedSeats.remove(seat)
+        } else if selectedSeats.count < totalSeatsToSelect && !reservedSeats.contains(seat) {
+            selectedSeats.insert(seat)
+        }
+    }
+}
+
+//Object to represent each individual seat
+//Subject to change in favor of a seat icon with different colors rather than boxes
+struct SeatToggleView: View {
+    let seat: Seat
+    let isSelected: Bool
+    let isReserved: Bool
+    
+    var body: some View {
+        RoundedRectangle(cornerRadius: 6)
+            .fill(isReserved ? Color.red : isSelected ? Color.green : Color.gray.opacity(0.5))
+    }
+}
+
+//Legend view to display information about each seat availability type
+struct LegendView: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(spacing: 4) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.green)
+                    .frame(width: 20, height: 20)
+                Text("Available")
+                    .font(.subheadline)
+            }
+            
+            HStack(spacing: 4) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.red)
+                    .frame(width: 20, height: 20)
+                Text("Reserved")
+                    .font(.subheadline)
+            }
+        }
     }
 }

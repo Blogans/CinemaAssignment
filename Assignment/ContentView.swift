@@ -6,11 +6,13 @@ class NavigationModel: ObservableObject {
 
 struct ContentView: View {
     @StateObject private var navigationModel = NavigationModel()
-    @StateObject private var bookingHistory: BookingHistory
     @StateObject private var movieData = MovieData()
+    @StateObject private var bookingHistory: BookingHistory
     
     init() {
-        _bookingHistory = StateObject(wrappedValue: BookingHistory(movieData: MovieData()))
+        let movieDataInstance = MovieData()
+        _movieData = StateObject(wrappedValue: movieDataInstance)
+        _bookingHistory = StateObject(wrappedValue: BookingHistory(movieData: movieDataInstance))
     }
     
     var body: some View {
@@ -21,28 +23,29 @@ struct ContentView: View {
                         Image(systemName: "house")
                         Text("Home")
                     }
+                    .environmentObject(bookingHistory)
                 
                 MoviesView()
                     .tabItem {
                         Image(systemName: "film")
                         Text("Movies")
                     }
+                    .environmentObject(movieData)
                 
                 HistoryView()
                     .tabItem {
                         Image(systemName: "clock")
                         Text("History")
                     }
+                    .environmentObject(bookingHistory)
             }
             .navigationDestination(for: Movie.self) { movie in
-                BookingProcessView(movie: movie)
+                BookingProcessView(movie: movie).environmentObject(bookingHistory)
             }
             .navigationDestination(for: Booking.self) { booking in
-                BookingDetailsView(booking: booking)
+                BookingDetailsView(booking: booking).environmentObject(bookingHistory)
             }
         }
-        .environmentObject(movieData)
         .environmentObject(navigationModel)
-        .environmentObject(bookingHistory)
     }
 }

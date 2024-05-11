@@ -27,19 +27,19 @@ struct BookingStep2View: View {
         VStack {
             SeatInfoView()
             
-            SeatSelectionView(adultSeats: $adultSeats,
+            SeatAmountSelectionView(adultSeats: $adultSeats,
                               childSeats: $childSeats,
                               concessionSeats: $concessionSeats,
                               bedSeats: $bedSeats)
             
             Spacer()
             
-            BookingDetailsSubView(movie: movie, date: selectedDate, time: selectedTime.time)
+            BookingDetailsSubView(movie: movie, date: selectedDate, time: selectedTime.time, selectedSeats: [])
                 .padding(.horizontal)
             
             Button(action: {
                 if totalSeats > 0 {
-                    navigationModel.path.append(BookingStep.step3(totalSeats))
+                    navigationModel.path.append(BookingStep.step3(selectedDate, selectedTime, adultSeats, childSeats, concessionSeats, bedSeats))
                 }
             }) {
                 Text("Next Step")
@@ -113,7 +113,7 @@ struct SeatInfoView: View {
     }
 }
 
-struct SeatSelectionView: View {
+struct SeatAmountSelectionView: View {
     @Binding var adultSeats: Int
     @Binding var childSeats: Int
     @Binding var concessionSeats: Int

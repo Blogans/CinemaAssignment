@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32DE3DEC2BEF301700BED785 /* SelectSeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */; };
 		32E6A8E32BEB36F10033DC04 /* AssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A8E22BEB36F10033DC04 /* AssignmentApp.swift */; };
 		32E6A8E52BEB36F10033DC04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A8E42BEB36F10033DC04 /* ContentView.swift */; };
 		32E6A8E72BEB36F20033DC04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32E6A8E62BEB36F20033DC04 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSeatView.swift; sourceTree = "<group>"; };
 		32E6A8DF2BEB36F10033DC04 /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32E6A8E22BEB36F10033DC04 /* AssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentApp.swift; sourceTree = "<group>"; };
 		32E6A8E42BEB36F10033DC04 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 			children = (
 				32E6A9222BECA8EA0033DC04 /* SelectTimeView.swift */,
 				32E6A9252BECB3E10033DC04 /* SelectSeatAmountView.swift */,
+				32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */,
 			);
 			path = Booking;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				32E6A91D2BEBAE8F0033DC04 /* MoviesView.swift in Sources */,
 				32E6A9132BEB6B550033DC04 /* HistoryView.swift in Sources */,
 				32E6A8E32BEB36F10033DC04 /* AssignmentApp.swift in Sources */,
+				32DE3DEC2BEF301700BED785 /* SelectSeatView.swift in Sources */,
 				32E6A90F2BEB630D0033DC04 /* BookingHistory.swift in Sources */,
 				32E6A91F2BEBAEBB0033DC04 /* BookingProcess.swift in Sources */,
 			);
