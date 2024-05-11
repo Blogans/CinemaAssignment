@@ -70,18 +70,10 @@ struct BookingStep3View: View {
             //Button for transferring to confirmation view
             Button(action: {
                 if selectedSeats.count == totalSeatsToSelect {
-                    //If all seats have been selected, a booking is created and saved.
-                    let newBooking = Booking(movie: movie,
-                                             date: selectedDate,
-                                             time: selectedTime,
-                                             seats: Array(selectedSeats),
-                                             active: true)
-                    bookingHistory.addBooking(newBooking)
-                    
-                    navigationModel.path.append(BookingStep.confirmation)
+                    navigationModel.path.append(BookingStep.confirmation(selectedDate, selectedTime, selectedSeats))
                 }
             }) {
-                Text("Confirm")
+                Text("Continue")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()

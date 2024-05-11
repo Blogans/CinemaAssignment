@@ -12,7 +12,7 @@ struct BookingProcessView: View {
     let movie: Movie
     @EnvironmentObject var navigationModel: NavigationModel
     @EnvironmentObject var bookingHistory: BookingHistory
-    
+
     var body: some View {
         VStack {
             BookingStep1View(movie: movie)
@@ -31,28 +31,13 @@ struct BookingProcessView: View {
                                      childSeats: childSeats,
                                      concessionSeats: concessionSeats,
                                      bedSeats: bedSeats).environmentObject(bookingHistory)
-                case .confirmation:
-                    BookingConfirmationView(movie: movie)
+                case .confirmation(let date, let time, let seats):
+                BookingConfirmationView(movie: movie, selectedDate: date, selectedTime: time, selectedSeats: seats).environmentObject(bookingHistory)
             }
         }
     }
 }
 
 enum BookingStep: Hashable {
-    case step1, step2(Date, TimeSlot), step3(Date, TimeSlot, Int, Int, Int, Int), confirmation
-}
-
-struct BookingConfirmationView: View {
-    let movie: Movie
-    @EnvironmentObject var navigationModel: NavigationModel
-    @Environment(\.presentationMode) var presentationMode
-    
-    var body: some View {
-        VStack {
-            Text("Booking Confirmation")
-            Button("Go Home") {
-                navigationModel.path = NavigationPath()
-            }
-        }
-    }
+    case step1, step2(Date, TimeSlot), step3(Date, TimeSlot, Int, Int, Int, Int), confirmation(Date, TimeSlot, Set<Seat>)
 }
