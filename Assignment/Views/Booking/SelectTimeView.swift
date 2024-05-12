@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct TimeSlot: Identifiable, Equatable, Hashable, Encodable, Decodable {
-    let id = UUID()
+    var id = UUID()
     let time: String
 }
 
@@ -30,6 +30,10 @@ struct BookingStep1View: View {
     @State private var selectedTime: TimeSlot? = nil
     @State private var countdownTime: TimeInterval = 10000 // 10 minutes in seconds
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var isNextButtonDisabled: Bool {
+        selectedTime == nil || Calendar.current.startOfDay(for: selectedDate) < Calendar.current.startOfDay(for: Date())
+    }
     
     var body: some View {
         VStack {
@@ -54,10 +58,10 @@ struct BookingStep1View: View {
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(selectedTime == nil ? Color.gray : Color.blue)
+                    .background(isNextButtonDisabled ? Color.gray : Color.blue)
                     .cornerRadius(10)
             }
-            .disabled(selectedTime == nil)
+            .disabled(isNextButtonDisabled)
             .padding()
         }
         .navigationBarTitle("Book Tickets", displayMode: .inline)

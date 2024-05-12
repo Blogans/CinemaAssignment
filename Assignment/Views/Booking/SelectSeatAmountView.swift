@@ -92,16 +92,7 @@ struct SeatInfoView: View {
                         Text("Concession Seats")
                             .font(.headline)
                     }
-                    Text("For seniors 66 and above or students with valid ID.")
-                        .font(.subheadline)
-                }
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    HStack {
-                        Text("Bed Seats")
-                            .font(.headline)
-                    }
-                    Text("Luxury seats with a bed-like design.")
+                    Text("For pensioners, seniors aged 66 and above or students with valid identification.")
                         .font(.subheadline)
                 }
             }
@@ -130,7 +121,6 @@ struct SeatAmountSelectionView: View {
                 SeatTypeRow(seatType: "Adult", seatCount: $adultSeats)
                 SeatTypeRow(seatType: "Child", seatCount: $childSeats)
                 SeatTypeRow(seatType: "Concession", seatCount: $concessionSeats)
-                SeatTypeRow(seatType: "Bed", seatCount: $bedSeats)
             }
             .padding(.horizontal)
         }

@@ -14,21 +14,12 @@ struct Seat: Codable, Hashable {
 }
 
 struct Booking: Identifiable, Codable, Hashable {
-    let id: UUID
+    var id = UUID()
     let movie: Movie
     let date: Date
     let time: TimeSlot
     let seats: [Seat]
     var active: Bool
-    
-    init(movie: Movie, date: Date, time: TimeSlot, seats: [Seat], active: Bool) {
-        self.id = UUID()
-        self.movie = movie
-        self.date = date
-        self.time = time
-        self.seats = seats
-        self.active = active
-    }
 }
 
 class BookingHistory: ObservableObject {
@@ -85,11 +76,23 @@ class BookingHistory: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         let sampleBookings = [
-            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-08")!, time: availableTimeslots[1], seats: [Seat(row: "A", number: 1), Seat(row: "A", number: 2)], active: true),
-            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-09")!, time: availableTimeslots[1], seats: [Seat(row: "B", number: 3), Seat(row: "B", number: 4)], active: true),
-            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-10")!, time: availableTimeslots[1], seats: [Seat(row: "C", number: 5), Seat(row: "C", number: 6)], active: true),
-            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-11")!, time: availableTimeslots[1], seats: [Seat(row: "D", number: 7), Seat(row: "D", number: 8)], active: true),
-            Booking(movie: movieData.movies.first {$0.name == "Deadpool" }!, date: dateFormatter.date(from: "2024-05-12")!, time: availableTimeslots[1], seats: [Seat(row: "E", number: 4), Seat(row: "E", number: 5)], active: true)
+            Booking(movie: movies[0], date: dateFormatter.date(from: "2024-05-13")!, time: availableTimeslots[1], seats: [Seat(row: "A", number: 1), Seat(row: "A", number: 2)], active: true),
+            Booking(movie: movies[1], date: dateFormatter.date(from: "2024-05-14")!, time: availableTimeslots[2], seats: [Seat(row: "B", number: 3), Seat(row: "B", number: 4)], active: true),
+            Booking(movie: movies[2], date: dateFormatter.date(from: "2024-05-15")!, time: availableTimeslots[3], seats: [Seat(row: "C", number: 5), Seat(row: "C", number: 6)], active: true),
+            Booking(movie: movies[3], date: dateFormatter.date(from: "2024-05-16")!, time: availableTimeslots[0], seats: [Seat(row: "D", number: 7), Seat(row: "D", number: 8)], active: true),
+            Booking(movie: movies[4], date: dateFormatter.date(from: "2024-05-17")!, time: availableTimeslots[1], seats: [Seat(row: "E", number: 4), Seat(row: "E", number: 5)], active: true),
+            
+            Booking(movie: movies[5], date: dateFormatter.date(from: "2024-05-18")!, time: availableTimeslots[2], seats: [Seat(row: "F", number: 1), Seat(row: "F", number: 2)], active: true),
+            Booking(movie: movies[6], date: dateFormatter.date(from: "2024-05-19")!, time: availableTimeslots[3], seats: [Seat(row: "A", number: 3), Seat(row: "A", number: 4)], active: true),
+            Booking(movie: movies[7], date: dateFormatter.date(from: "2024-05-20")!, time: availableTimeslots[0], seats: [Seat(row: "B", number: 5), Seat(row: "B", number: 6)], active: true),
+            Booking(movie: movies[8], date: dateFormatter.date(from: "2024-05-21")!, time: availableTimeslots[1], seats: [Seat(row: "C", number: 7), Seat(row: "C", number: 8)], active: true),
+            Booking(movie: movies[9], date: dateFormatter.date(from: "2024-05-22")!, time: availableTimeslots[2], seats: [Seat(row: "D", number: 1), Seat(row: "D", number: 2)], active: true),
+            
+            Booking(movie: movies[10], date: dateFormatter.date(from: "2024-05-23")!, time: availableTimeslots[3], seats: [Seat(row: "E", number: 3), Seat(row: "E", number: 4)], active: true),
+            Booking(movie: movies[11], date: dateFormatter.date(from: "2024-05-13")!, time: availableTimeslots[0], seats: [Seat(row: "F", number: 5), Seat(row: "F", number: 6)], active: true),
+            Booking(movie: movies[12], date: dateFormatter.date(from: "2024-05-14")!, time: availableTimeslots[1], seats: [Seat(row: "A", number: 7), Seat(row: "A", number: 8)], active: true),
+            Booking(movie: movies[13], date: dateFormatter.date(from: "2024-05-15")!, time: availableTimeslots[2], seats: [Seat(row: "B", number: 1), Seat(row: "B", number: 2)], active: true),
+            Booking(movie: movies[14], date: dateFormatter.date(from: "2024-05-16")!, time: availableTimeslots[3], seats: [Seat(row: "C", number: 3), Seat(row: "C", number: 4)], active: true)
         ]
         
         bookings.append(contentsOf: sampleBookings)

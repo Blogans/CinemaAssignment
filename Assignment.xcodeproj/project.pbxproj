@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3225155D2BF0BD93009F7695 /* BookingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3225155C2BF0BD93009F7695 /* BookingConfirmationView.swift */; };
 		32DE3DEC2BEF301700BED785 /* SelectSeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */; };
 		32E6A8E32BEB36F10033DC04 /* AssignmentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A8E22BEB36F10033DC04 /* AssignmentApp.swift */; };
 		32E6A8E52BEB36F10033DC04 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E6A8E42BEB36F10033DC04 /* ContentView.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3225155C2BF0BD93009F7695 /* BookingConfirmationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingConfirmationView.swift; sourceTree = "<group>"; };
 		32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSeatView.swift; sourceTree = "<group>"; };
 		32E6A8DF2BEB36F10033DC04 /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32E6A8E22BEB36F10033DC04 /* AssignmentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentApp.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		32E6A9242BECB39E0033DC04 /* Booking */ = {
 			isa = PBXGroup;
 			children = (
+				3225155C2BF0BD93009F7695 /* BookingConfirmationView.swift */,
 				32E6A9222BECA8EA0033DC04 /* SelectTimeView.swift */,
 				32E6A9252BECB3E10033DC04 /* SelectSeatAmountView.swift */,
 				32DE3DEB2BEF301700BED785 /* SelectSeatView.swift */,
@@ -322,6 +325,7 @@
 				32E6A9232BECA8EA0033DC04 /* SelectTimeView.swift in Sources */,
 				32E6A9152BEB95840033DC04 /* MovieData.swift in Sources */,
 				32E6A9172BEBAE2D0033DC04 /* HomeView.swift in Sources */,
+				3225155D2BF0BD93009F7695 /* BookingConfirmationView.swift in Sources */,
 				32E6A8E52BEB36F10033DC04 /* ContentView.swift in Sources */,
 				32E6A9112BEB69640033DC04 /* BookingDetailsView.swift in Sources */,
 				32E6A9192BEBAE560033DC04 /* UpcomingTicketView.swift in Sources */,

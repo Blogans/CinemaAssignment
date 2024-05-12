@@ -36,7 +36,7 @@ struct HomeView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
-                            ForEach(upcomingBookings) { booking in
+                            ForEach(upcomingBookings.sorted(by: { $0.date < $1.date })) { booking in
                                 NavigationLink(value: booking) {
                                     UpcomingTicketView(booking: booking)
                                 }.environmentObject(bookingHistory)

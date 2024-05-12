@@ -8,7 +8,7 @@
 import Foundation
 
 struct Movie: Identifiable, Codable, Hashable {
-    let id = UUID()
+    var id = UUID()
     let name: String
     let poster: String
     let genres: [String]
@@ -79,7 +79,17 @@ class MovieData: ObservableObject {
             Movie(name: "Avengers Endgame", poster: "endgame", genres: ["Action", "Adventure", "Sci-Fi"]),
             Movie(name: "Barbie", poster: "barbie", genres: ["Comedy", "Family"]),
             Movie(name: "Spider-Man Across the Spider-Verse", poster: "spiderman", genres: ["Action", "Animation", "Adventure", "Sci-Fi"]),
-            Movie(name: "Deadpool", poster: "deadpool", genres: ["Action", "Comedy", "Adventure"])
+            Movie(name: "Deadpool", poster: "deadpool", genres: ["Action", "Comedy", "Adventure"]),
+            Movie(name: "Parasite", poster: "parasite", genres: ["Comedy", "Drama", "Thriller"]),
+            Movie(name: "Avengers: Endgame", poster: "avengersendgame", genres: ["Action", "Adventure", "Sci-Fi"]),
+            Movie(name: "Joker", poster: "joker", genres: ["Crime", "Drama", "Thriller"]),
+            Movie(name: "1917", poster: "1917", genres: ["Drama", "War"]),
+            Movie(name: "La La Land", poster: "lalaland", genres: ["Comedy", "Drama", "Music"]),
+            Movie(name: "Black Panther", poster: "blackpanther", genres: ["Action", "Adventure", "Sci-Fi"]),
+            Movie(name: "A Star Is Born", poster: "astarisborn", genres: ["Drama", "Music", "Romance"]),
+            Movie(name: "The Shape of Water", poster: "theshapeofwater", genres: ["Drama", "Fantasy", "Romance"]),
+            Movie(name: "Bohemian Rhapsody", poster: "bohemianrhapsody", genres: ["Biography", "Drama", "Music"]),
+            Movie(name: "The Irishman", poster: "irishman", genres: ["Biography", "Crime", "Drama"])
         ]
         
         movies.append(contentsOf: sampleMovies)
